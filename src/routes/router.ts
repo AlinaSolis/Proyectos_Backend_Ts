@@ -5,6 +5,6 @@ const routes = express.Router();
 
 routes.post('/login', login );
 
-routes.post('/time', getTimeToken);
+routes.get('/time/:userId', getTimeToken);
 
 export default routes;
