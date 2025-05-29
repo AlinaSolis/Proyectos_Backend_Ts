@@ -1,6 +1,8 @@
 import express  from "express";
 import morgan from 'morgan';
 import authRoute from './routes/router.ts';
+import connectDBMongo from "./config/db.ts";
+
 //inicializar el servidor de express
 const app = express ();
 
@@ -12,6 +14,9 @@ app.use(morgan('dev')); //Mostrar logs de las peticiones
 
 app.use('/api/v1/auth', authRoute); //ruta principal 
 
-app.listen(PORT, ()=>{
+connectDBMongo().then(() => {
+    app.listen(PORT, ()=>{
     console.log("El servidor esta funcionando:", PORT);
+   
+});
 });
